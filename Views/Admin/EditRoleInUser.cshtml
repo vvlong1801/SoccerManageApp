@@ -1,0 +1,25 @@
+@model List<SoccerManageApp.Models.Admin.RoleInUserModel>
+
+<form asp-action="EditRoleInUser" asp-route-userId="@ViewBag.userId" method="post">
+    <div class="card">
+        <div class="card-header">Manage Role For @ViewBag.Username</div>
+        <div class="card-body">
+            @for(int i=0;i<Model.Count;i++)
+            {
+              
+               <div>
+                   <input type="hidden" asp-for="@Model[i].RoleId"/>
+                    <input type="hidden" asp-for="@Model[i].RoleName"/>
+                    <input type="checkbox" asp-for="@Model[i].IsSelected"/>
+                    <label asp-for="@Model[i].IsSelected">@Model[i].RoleName</label>
+               </div>
+              
+               
+            }
+        </div>
+        <div class="card-footer">
+            <button type="submit"  class="btn btn-primary">Update</button>
+            <a href="/Admin/ListUsers" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+</form>    

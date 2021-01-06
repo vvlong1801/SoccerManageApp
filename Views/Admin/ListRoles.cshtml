@@ -1,0 +1,27 @@
+@model IEnumerable<IdentityRole>
+@using Microsoft.AspNetCore.Identity
+
+<h3>List roles</h3>
+<a href="/Admin/CreateRole" class="btn btn-primary">Create new role</a>
+@if(Model.Any())
+{
+    foreach (var role in Model)
+    {
+        <div class="card">
+            <div class="card-header">
+                Role ID:<span style="font-size: 25px;"> @role.Id</span>
+            </div>
+             <div class="card-body">
+                Role Name: <span style="font-size:25px;"> @role.Name</span>
+             </div>
+              <div class="card-footer">
+                    <a asp-action="EditRole" asp-controller="Admin" class="btn btn-primary" asp-route-roleId="@role.Id">
+                        Edit</a>
+                  <a href="/Home" class="btn btn-primary">Back</a>
+              </div>
+        </div>
+    }
+}else
+{
+    <h3>No role available</h3>
+}

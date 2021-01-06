@@ -1,0 +1,40 @@
+@model SoccerManageApp.Models.Admin.EditUserModel
+
+<form asp-action="EditUser" asp-route-roleId="@ViewBag.UserId" method="POST">
+    <div>
+       <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    User ID :<input type="text" readonly asp-for="@Model.UserId" />
+                </div>
+                <div class="card-title">
+                    Username: <input type="text" asp-for="@Model.Username" />
+                </div>
+
+                <div class="card-title">
+                    Email: <input type="text" asp-for="@Model.Email" />
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="/Admin/ListUsers" class="btn btn-danger">Cancel</a>
+        </div>
+    </div>
+</form>
+<h3>User has roles</h3>
+@if(Model.Roles.Any())
+{
+    foreach (var role in Model.Roles)
+    {
+        <h5>@role</h5>
+    }
+    <a asp-action="EditRoleInUser" asp-route-userId="@Model.UserId" class="btn btn-primary">Add or Remove Role</a>
+}
+else
+{
+    <h5>User has no role</h5>
+    <a asp-action="EditRoleInUser" asp-route-userId="@Model.UserId" class="btn btn-primary">Add Users</a>
+    
+
+}

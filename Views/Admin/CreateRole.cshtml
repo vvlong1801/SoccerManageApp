@@ -1,0 +1,12 @@
+@model SoccerManageApp.Models.Admin.RoleModel
+<h3>Create Roles</h3>
+<form action="/Admin/CreateRole" method="POST">
+    <div>
+        <label asp-for="Rolename"></label>
+         <input asp-for="Rolename" type="text"/>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a href="/Admin/ListRoles" class="btn btn-primary">Back</a>
+    </div>
+</form>
