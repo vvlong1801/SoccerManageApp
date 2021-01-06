@@ -16,7 +16,7 @@ namespace SoccerManageApp.Configuration
             builder.Property(p=>p.Kit).HasColumnName("kit");
             builder.Property(p=>p.Position).HasColumnName("position").HasMaxLength(30);
             builder.Property(p=>p.Country).HasColumnName("country").HasMaxLength(30);
-            builder.Property(p=>p.Country).HasColumnName("country_image").HasMaxLength(30);
+            builder.Property(p=>p.CountryImage).HasColumnName("country_image").HasMaxLength(30);
             builder.Property(p=>p.TeamID).HasColumnName("team_id");
             builder.HasOne(t=>t.Team).WithMany(p=>p.Players);
         }

@@ -1,4 +1,4 @@
-namespace FinalTest.Models
+namespace SoccerManageApp.Models
 {
     public static class DbConnection
     {
