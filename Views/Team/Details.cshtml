@@ -1,0 +1,51 @@
+@model IEnumerable<SoccerManageApp.Dtos.TeamDetails>
+@{
+    ViewData["Title"] = "Details";
+}
+<form method="get">
+<input type="text" name="searchStr" >
+<button type="submit">Search</button>
+</form>
+
+<table border="2" cellpadding="30">
+    <thead>
+        <th>Team Name</th>
+        <th>Players</th>
+
+    </thead>
+    <tbody>
+
+        <tr>
+
+            <td>
+                <h2>@ViewData["Teamname"]</h2>
+                <img src="~/Image/@ViewData["TeamImage"]">
+            </td>
+            <td>
+                @foreach (var item in Model)
+                {
+                   
+                        <ul>
+                        <li><a asp-controller="Player" asp-action="Details" asp-route-id="">
+                                <h4>@item.FirstName @item.LastName</h4>
+                            </a>(<span>Position:@item.Position</span>)
+                            
+                           <div style="margin-top: 20px;">
+                            <a asp-controller="Player" asp-action="Edit" asp-route-id="" >Edit</a>
+                            <a asp-controller="Player" asp-action="Delete" asp-route-id="" >Delete</a>
+                            <a asp-controller="Player" asp-action="Details" asp-route-id="" >Details</a>
+                           </div>
+                            </li>
+                            <hr/>
+                    </ul>
+                    
+                    
+                }
+                <a asp-action="Create" asp-controller="Team" asp-route-teamId=""> Add Player</a>
+            </td>
+        </tr>
+
+
+    </tbody>
+</table>
+<a asp-action="Index" asp-controller="Team">Back To Teams</a>

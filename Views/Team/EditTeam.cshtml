@@ -1,0 +1,29 @@
+@model SoccerManageApp.Models.Entities.Team
+
+<h3> Edit Team </h3>
+<form asp-action="EditTeam" asp-route-teamId="@ViewBag.teamId" method="POST">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="@Model.TeamID"></label>
+        <input type="number" readonly asp-for="@Model.TeamID"/>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.TeamName"></label>
+        <input type="text" asp-for="@Model.TeamName"/>
+        <span asp-validation-for="@Model.TeamName"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="@Model.TeamImage"></label>
+        <input type="text" asp-for="@Model.TeamImage"/>
+        <span asp-validation-for="@Model.TeamImage"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="@Model.StadiumID"></label>
+        <input type="number" asp-for="@Model.StadiumID"/>
+        <span asp-validation-for="@Model.StadiumID"></span>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Update</button>
+        <a href="/Team/ListTeams" class="btn btn-primary">Back</a>
+    </div>
+</form>

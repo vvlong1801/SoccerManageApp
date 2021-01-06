@@ -12,6 +12,7 @@ namespace SoccerManageApp.Configuration
            builder.Property(p=>p.TeamID).HasColumnName("team_id");
            builder.Property(p=>p.TeamName).HasColumnName("team_name").HasMaxLength(30).IsRequired(true);
            builder.Property(p=>p.TeamImage).HasColumnName("team_image").HasMaxLength(30).IsRequired(true);
+           builder.Property(p=>p.StadiumID).HasColumnName("stadium_id");
 
            
         }

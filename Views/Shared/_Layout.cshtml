@@ -61,8 +61,13 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home"
-                                asp-action="Privacy">Privacy</a>
+                                asp-action="Index">News</a>
                         </li>
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Team"
+                                asp-action="CreateTeam">Register Team</a>
+                        </li>
+                        
                          @if(_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                          {
                              <div class="dropdown">
@@ -76,6 +81,8 @@
                                  </div>
                             </div>
                          }
+                            
+                         
                         
                     </ul>
                 </div>

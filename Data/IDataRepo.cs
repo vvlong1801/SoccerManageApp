@@ -11,9 +11,11 @@ namespace SoccerManage.Data
         //Team Data
         Task<IEnumerable<TeamDetails>> GetTeamByNameAsync(string name);
         Task<IEnumerable<TeamDetails>> GetTeamByName_withSearchAsync(string name,string search);
-        Task<int> CreateTeam(Team team);
+        Task<int> CreateTeamAsync(Team team);
         Task<Team> GetTeamAsync(int? id);
         Task<IEnumerable<TeamDtos>> GetAllTeamsAsync();
+        Task<Team> GetTeamByIdAsync(int Id);
+        Task<Team> UpdateTeamAsync(Team team,int teamId);
         
       
                 //Player Data

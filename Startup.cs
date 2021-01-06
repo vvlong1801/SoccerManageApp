@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SoccerManage.Data;
 using SoccerManageApp.Models;
 
 namespace SoccerManageApp
@@ -50,6 +51,7 @@ namespace SoccerManageApp
                 options.Password.RequireUppercase=true;
 
             });
+            services.AddScoped<IDataRepo,DataRepo>();
         
         }
 

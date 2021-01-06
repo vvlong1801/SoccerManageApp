@@ -1,0 +1,39 @@
+@model IEnumerable<SoccerManageApp.Dtos.MatchInfoDtos>
+@{
+    ViewData["Title"]="Details Match";
+}
+<form action="/Match/Index" method="GET">
+<input type="datetime" placeholder="Find by date" name="datetime"/>
+<button type="submit">Search</button>
+</form>
+<table border="1" cellpadding="15">
+    <thead>
+        <th>Match ID</th>
+        <th>Date Time</th>
+        <th>Attendance</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Satdium</th>
+        <th>Result</th>
+        
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MatchID</td>
+                <td>@item.Datetime.ToString("MM/dd/yyyy")</td>
+                <td>@item.Attendance</td>
+                <td>@item.HomeName
+                    <img src="~/Image/@item.HomeImage">
+                </td>
+                <td>@item.AwayName
+                    <img src="~/Image/@item.AwayImage">
+                </td>
+                <td>@item.StadiumName</td>
+                <td><a asp-action="Details" asp-controller="Score" asp-route-matchId="@item.MatchID">@item.HomeRes - @item.AwayRes</a></td>
+            </tr>
+        }
+    </tbody>
+    <a asp-action="Create" asp-controller="Match">Create a match</a>
+</table>

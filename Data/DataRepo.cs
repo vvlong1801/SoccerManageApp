@@ -114,7 +114,7 @@ namespace SoccerManage.Data {
 
         }
 
-        public async Task<int> CreateTeam (Team team) {
+        public async Task<int> CreateTeamAsync (Team team) {
             var connStr = DbConnection.connectionString;
             int rows;
             using (NpgsqlConnection conn = new NpgsqlConnection (connStr)) {
@@ -187,16 +187,16 @@ namespace SoccerManage.Data {
             List<TeamDtos> list = new List<TeamDtos> ();
             var connStr = DbConnection.connectionString;
             using (conn = new NpgsqlConnection (connStr)) {
-                var cmdStr = "Select * from team inner join stadium using(\"StadiumID\");";
+                var cmdStr = "Select * from team_dto";
                 using (NpgsqlCommand command = new NpgsqlCommand (cmdStr, conn)) {
                     await conn.OpenAsync ();
                     using (NpgsqlDataReader reader = await command.ExecuteReaderAsync ()) {
                         while (reader.Read ()) {
                         var team = new TeamDtos () {
-                        StadiumID = reader.GetInt32 (0),
-                        TeamID = reader.GetInt32 (1),
-                        TeamName = reader.GetString (2),
-                        TeamImage = reader.GetString (3),
+                        StadiumID = reader.GetInt32 (3),
+                        TeamID = reader.GetInt32 (0),
+                        TeamName = reader.GetString (1),
+                        TeamImage = reader.GetString (2),
                         StadiumName = reader.GetString (4)
 
                             };
@@ -217,7 +217,7 @@ namespace SoccerManage.Data {
             using (var conn = new NpgsqlConnection (connStr)) {
                 using (var cmd = new NpgsqlCommand (cmdStr, conn)) {
                     await conn.OpenAsync ();
-                    cmd.Parameters.AddWithValue("@datetime",date);
+                    cmd.Parameters.AddWithValue ("@datetime", date);
                     using (NpgsqlDataReader rd = await cmd.ExecuteReaderAsync ()) {
                         while (rd.Read ()) {
                         var match = new MatchInfoDtos () {
@@ -299,34 +299,27 @@ namespace SoccerManage.Data {
             return await _context.Teams.FirstOrDefaultAsync (t => t.TeamID == id);
         }
 
-
-        public async Task<IEnumerable<TeamDetails>> GetTeamByName_withSearchAsync(string name, string search)
-        {
-            var connStr=DbConnection.connectionString;
-            var cmdStr="Select * from getteambynamewithsearch(@name,@search);";
-            List<TeamDetails> teams=null;
-            using(var conn=new NpgsqlConnection(connStr))
-            {
-                using(var cmd=new NpgsqlCommand(cmdStr,conn))
-                {
-                    cmd.Parameters.AddWithValue("@name",name);
-                    cmd.Parameters.AddWithValue("@search",search);
-                    await conn.OpenAsync();
-                    using(NpgsqlDataReader rd=await cmd.ExecuteReaderAsync())
-                    {
-                        while(rd.Read())
-                        {
-                            var team=new TeamDetails();
-                            team.TeamName=rd["TeamName"].ToString();
-                            team.TeamImage=rd["TeamImage"].ToString();
-                            team.FirstName=rd["FirstName"].ToString();
-                            team.LastName=rd["LastName"].ToString();
-                            team.Position=rd["position"].ToString();
-                            team.CountryImage=rd["CountryImage"].ToString();
-                            teams.Add(team);
+        public async Task<IEnumerable<TeamDetails>> GetTeamByName_withSearchAsync (string name, string search) {
+            var connStr = DbConnection.connectionString;
+            var cmdStr = "Select * from getteambynamewithsearch(@name,@search);";
+            List<TeamDetails> teams = null;
+            using (var conn = new NpgsqlConnection (connStr)) {
+                using (var cmd = new NpgsqlCommand (cmdStr, conn)) {
+                    cmd.Parameters.AddWithValue ("@name", name);
+                    cmd.Parameters.AddWithValue ("@search", search);
+                    await conn.OpenAsync ();
+                    using (NpgsqlDataReader rd = await cmd.ExecuteReaderAsync ()) {
+                        while (rd.Read ()) {
+                            var team = new TeamDetails ();
+                            team.TeamName = rd["TeamName"].ToString ();
+                            team.TeamImage = rd["TeamImage"].ToString ();
+                            team.FirstName = rd["FirstName"].ToString ();
+                            team.LastName = rd["LastName"].ToString ();
+                            team.Position = rd["position"].ToString ();
+                            team.CountryImage = rd["CountryImage"].ToString ();
+                            teams.Add (team);
                         }
                     }
-
 
                 }
             }
@@ -346,61 +339,74 @@ namespace SoccerManage.Data {
             _context.SaveChanges ();
         }
 
-        public async Task<IEnumerable<TeamDetails>> GetTeamByNameAsync(string name)
-        {
-          var connStr=DbConnection.connectionString;
-            var cmdStr="select * from team_detail_dtos where \"TeamName\"=@name;";
-            List<TeamDetails> teams=null;
-            using(var conn=new NpgsqlConnection(connStr))
-            {
-                using(var cmd=new NpgsqlCommand(cmdStr,conn))
-                {
-                    cmd.Parameters.AddWithValue("@name",name);
-                   
-                    await conn.OpenAsync();
-                    using(NpgsqlDataReader rd=await cmd.ExecuteReaderAsync())
-                    {
-                        while(rd.Read())
-                        {
-                            var team=new TeamDetails();
-                            team.TeamName=rd["TeamName"].ToString();
-                            team.TeamImage=rd["TeamImage"].ToString();
-                            team.FirstName=rd["FirstName"].ToString();
-                            team.LastName=rd["LastName"].ToString();
-                            team.Position=rd["position"].ToString();
-                            team.CountryImage=rd["CountryImage"].ToString();
-                            teams.Add(team);
+        public async Task<IEnumerable<TeamDetails>> GetTeamByNameAsync (string name) {
+            var connStr = DbConnection.connectionString;
+            var cmdStr = "select * from team_dto where team_name=@name;";
+            List<TeamDetails> teams = null;
+            using (var conn = new NpgsqlConnection (connStr)) {
+                using (var cmd = new NpgsqlCommand (cmdStr, conn)) {
+                    cmd.Parameters.AddWithValue ("@name", name);
+
+                    await conn.OpenAsync ();
+                    using (NpgsqlDataReader rd = await cmd.ExecuteReaderAsync ()) {
+                        while (rd.Read ()) {
+                            var team = new TeamDetails ();
+                            team.TeamName = rd["team_name"].ToString ();
+                            team.TeamImage = rd["team_image"].ToString ();
+                            team.FirstName = rd["FirstName"].ToString ();
+                            team.LastName = rd["LastName"].ToString ();
+                            team.Position = rd["position"].ToString ();
+                            team.CountryImage = rd["CountryImage"].ToString ();
+                            teams.Add (team);
                         }
                     }
 
-
                 }
             }
-            return teams;   
+            return teams;
         }
 
-        Task<IEnumerable<TeamDetails>> IDataRepo.GetTeamByNameAsync(string name)
-        {
-            throw new NotImplementedException();
+        Task<IEnumerable<TeamDetails>> IDataRepo.GetTeamByNameAsync (string name) {
+            throw new NotImplementedException ();
         }
 
-        Task<IEnumerable<TeamDetails>> IDataRepo.GetTeamByName_withSearchAsync(string name, string search)
-        {
-            throw new NotImplementedException();
+        Task<IEnumerable<TeamDetails>> IDataRepo.GetTeamByName_withSearchAsync (string name, string search) {
+            throw new NotImplementedException ();
         }
-        Task<IEnumerable<MatchInfoDtos>> IDataRepo.GetAllMatchAsync()
-        {
-            throw new NotImplementedException();
+        Task<IEnumerable<MatchInfoDtos>> IDataRepo.GetAllMatchAsync () {
+            throw new NotImplementedException ();
         }
 
-        Task<MatchInfoDtos> IDataRepo.GetMatchById(int matchId)
-        {
-            throw new NotImplementedException();
+        Task<MatchInfoDtos> IDataRepo.GetMatchById (int matchId) {
+            throw new NotImplementedException ();
         }
 
-        Task<IEnumerable<MatchInfoDtos>> IDataRepo.GetMatchByDatetimeAsync(DateTime date)
-        {
-            throw new NotImplementedException();
+        Task<IEnumerable<MatchInfoDtos>> IDataRepo.GetMatchByDatetimeAsync (DateTime date) {
+            throw new NotImplementedException ();
+        }
+
+        public async Task<Team> GetTeamByIdAsync (int Id) {
+            return await _context.Teams.FirstOrDefaultAsync (t => t.TeamID == Id);
+        }
+
+        public async Task<Team> UpdateTeamAsync (Team model,int teamId) {
+            NpgsqlConnection conn = null;
+            var cmdStr = "update team set team_name = @teamname, team_image = @teamimage, stadium_id = @stadium_id where team_id=@teamid;";
+
+            var connStr = DbConnection.connectionString;
+            using (conn = new NpgsqlConnection (connStr)) {
+                using (NpgsqlCommand cmd = new NpgsqlCommand (cmdStr, conn)) {
+                    cmd.Parameters.AddWithValue ("@teamname", model.TeamName);
+                    cmd.Parameters.AddWithValue ("@teamimage", model.TeamImage);
+                    cmd.Parameters.AddWithValue ("@stadiumid", model.StadiumID);
+                    cmd.Parameters.AddWithValue ("@teamid", model.TeamID);
+                    await conn.OpenAsync ();
+                    await cmd.ExecuteNonQueryAsync ();
+                }
+            }
+            var team = await _context.Teams.FirstOrDefaultAsync (t => t.TeamID == teamId);
+            return team;
+
         }
 
     }

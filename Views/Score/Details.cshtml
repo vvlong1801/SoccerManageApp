@@ -1,0 +1,46 @@
+@model IEnumerable<SoccerManageApp.Models.Entities.Score>
+@{
+    ViewData["Title"]="Score Details";
+}    
+<table border="1" cellpadding="15">
+    <thead>
+        <th><h3>@ViewData["HomeTeam"]</h3>
+          <img style="margin-left: 50px;" src="~/Image/@ViewData["HomeImage"]">
+        </th>
+         <th><h3>@ViewData["AwayTeam"]</h3>
+           <img style="margin-left: 50px;" src="~/Image/@ViewData["AwayImage"]">
+         </th>
+
+    </thead>
+    <tbody>
+      
+           <tr>
+                
+               <td>
+                   @foreach (var goal in Model)
+                   {
+                       @if(@goal.Team.TeamName.ToString()==@ViewData["HomeTeam"].ToString())
+
+                     {
+                       <h5 style="padding: 5;">@goal.Player.FullName
+                           <img src="~/Image/Mix/Ball.png"/>
+                       </h5>
+                     }
+                   }
+                </td>
+                <td>
+                   @foreach (var goal in Model)
+                   {
+                       @if(@goal.Team.TeamName.ToString()==@ViewData["AwayTeam"].ToString())
+
+                     {
+                       <h5 style="padding: 5;">@goal.Player.FullName
+                            <img src="~/Image/Mix/Ball.png"/>
+                       </h5>
+                     }
+                   }
+                </td>
+  
+           </tr>
+    </tbody>
+</table>

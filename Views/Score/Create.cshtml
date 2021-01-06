@@ -1,0 +1,34 @@
+@model SoccerManageApp.Models.Entities.Score
+@{
+    ViewData["Title"]="Create Score";
+}
+<form asp-action="Create" asp-controller="Match" method="POST">
+    <div class="form-group">
+        <label asp-for="@Model.ScoreID">Score ID</label>
+        <input asp-for="@Model.ScoreID" type="number">
+        <span asp-validation-for="@Model.ScoreID"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.MatchID">Match ID</label>
+        <input asp-for="@Model.MatchID" type="number">
+        <span asp-validation-for="@Model.MatchID"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.PlayerID">Player ID</label>
+        <input asp-for="@Model.PlayerID" type="number">
+        <span asp-validation-for="@Model.PlayerID"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.TeamID">Team ID</label>
+        <input asp-for="@Model.TeamID" type="number">
+        <span asp-validation-for="@Model.TeamID"></span>
+    </div>
+
+    <div class="form-group">
+        
+        <input type="submit" value="Add Score">
+        <button type="button" asp-action="Index" asp-controller="Match">Back</button>
+        
+    </div> 
+</form>
+

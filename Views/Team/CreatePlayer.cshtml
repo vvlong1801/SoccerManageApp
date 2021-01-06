@@ -1,0 +1,55 @@
+@model SoccerManageApp.Models.Entities.Player
+@{
+    ViewData["Title"]="Create Player";
+}
+<h3> Add player for <span class="text-danger">@ViewBag.Team.TeamName </span>club</h3>
+<form asp-action="Create" asp-controller="Team" asp-route-teamId="@ViewBag.Team.TeamID" method="POST">
+    <div class="form-group">
+        <label asp-for="@Model.PlayerID">PlayerID</label>
+        <input asp-for="@Model.PlayerID" type="number">
+        <span asp-validation-for="@Model.FirstName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.FirstName">Firstname</label>
+        <input asp-for="@Model.FirstName" type="text">
+        <span asp-validation-for="@Model.FirstName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.LastName">Lastname</label>
+        <input asp-for="@Model.LastName" type="text">
+        <span asp-validation-for="@Model.LastName"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="@Model.Kit">Kit Number</label>
+        <input asp-for="@Model.Kit" type="text">
+        <span asp-validation-for="@Model.Kit"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Position">Position</label>
+        <input asp-for="@Model.Position" type="text">
+        <span asp-validation-for="@Model.Position"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Country">Country</label>
+        <input asp-for="@Model.Country" type="text">
+        <span asp-validation-for="@Model.Country"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.TeamID">Team ID</label>
+        <input asp-for="@Model.TeamID" type="number">
+        <span asp-validation-for="@Model.TeamID"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.CountryImage">Country Image</label>
+        <input asp-for="@Model.CountryImage" type="text">
+        <span asp-validation-for="@Model.CountryImage"></span>
+    </div>
+
+    <div class="form-group">
+        
+        <input type="submit" value="Add Player">
+        
+    </div>
+</form>
+

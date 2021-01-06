@@ -1,0 +1,35 @@
+@model SoccerManageApp.Models.Entities.Player
+@{
+    ViewData["Title"]="Player Details";
+}
+@{
+    var path=@Model.Team.TeamName;
+}
+ 
+<table border="2" cellpadding="30">
+
+       
+        <thead>
+            <th>Fullname</th>
+            <th>Position</th>
+            <th>Kit Number</th>
+            <th>Country</th>
+            <th>Club</th>
+        </thead>
+        <tbody>
+           
+            <tr>
+                <td><h4>@Model.FullName</h4></td>
+                <td>@Model.Position</td>
+                <td>@Model.Kit</td>
+                <td>@Model.Country
+                    <img src="~/Image/@Model.CountryImage">
+                </td>
+                <td>@Model.Team.TeamName
+                    <img src="~/Image/@Model.Team.TeamImage">
+                </td>
+            </tr>
+          
+        </tbody>
+    </table>
+<a asp-action="Details" asp-controller="Team" asp-route-teamName="@Model.Team.TeamName">Back To Teams</a>

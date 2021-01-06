@@ -2,7 +2,7 @@ namespace SoccerManageApp.Dtos
 {
     public class TeamDetails
     {
-       public string TeamName {get; set;}
+    public string TeamName {get; set;}
     public string TeamImage {get; set;}
     public string FirstName{get; set;}
     public string LastName{get; set;}

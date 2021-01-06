@@ -12,6 +12,7 @@ namespace SoccerManageApp.Models.Entities
              AwayMatches=new HashSet<Match>();
              Scores=new HashSet<Score>();
              TeamResults=new HashSet<TeamResult>();
+             
         }
 
         public int TeamID { get; set; }
