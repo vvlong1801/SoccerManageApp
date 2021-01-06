@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SoccerManageApp.Models;
@@ -9,9 +10,10 @@ using SoccerManageApp.Models;
 namespace SoccerManageApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210106124557_Initial_update")]
+    partial class Initial_update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -413,28 +415,30 @@ namespace SoccerManageApp.Migrations
             modelBuilder.Entity("SoccerManageApp.Models.Entities.TeamResult", b =>
                 {
                     b.Property<int>("TeamID")
-                        .HasColumnName("team_id")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("DrawMatch")
-                        .HasColumnName("draw_match")
                         .HasColumnType("integer");
 
                     b.Property<int>("LoseMatch")
-                        .HasColumnName("lose_match")
                         .HasColumnType("integer");
 
                     b.Property<int>("Point")
-                        .HasColumnName("point")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TeamID1")
                         .HasColumnType("integer");
 
                     b.Property<int>("WinMatch")
-                        .HasColumnName("win_match")
                         .HasColumnType("integer");
 
                     b.HasKey("TeamID");
 
-                    b.ToTable("team_result");
+                    b.HasIndex("TeamID1");
+
+                    b.ToTable("TeamResult");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -561,7 +565,7 @@ namespace SoccerManageApp.Migrations
                 {
                     b.HasOne("SoccerManageApp.Models.Entities.Team", "Team")
                         .WithMany("TeamResults")
-                        .HasForeignKey("TeamID")
+                        .HasForeignKey("TeamID1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

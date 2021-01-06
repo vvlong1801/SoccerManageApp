@@ -11,6 +11,7 @@ namespace SoccerManageApp.Models.Entities
             HomeMatches=new HashSet<Match>();
              AwayMatches=new HashSet<Match>();
              Scores=new HashSet<Score>();
+             TeamResults=new HashSet<TeamResult>();
         }
 
         public int TeamID { get; set; }
@@ -24,6 +25,7 @@ namespace SoccerManageApp.Models.Entities
         [InversePropertyAttribute("AwayRes")]
         public virtual ICollection<Match> AwayMatches{get;set;}
         public virtual ICollection<Score> Scores{get;set;}
+        public virtual ICollection<TeamResult> TeamResults{get;set;}
 
     }
 }

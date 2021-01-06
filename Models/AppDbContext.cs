@@ -1,3 +1,4 @@
+using System.Reflection.Emit;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SoccerManageApp.Configuration;
@@ -17,6 +18,7 @@ namespace SoccerManageApp.Models
             modelBuilder.ApplyConfiguration(new StadiumConfiguration());
             modelBuilder.ApplyConfiguration(new PlayerConfiguration());
             modelBuilder.ApplyConfiguration(new TeamConfiguration());
+            modelBuilder.ApplyConfiguration(new TeamResultConfiguration());
         }
         public DbSet<Match> Matches { get;set; }
         public DbSet<Team> Teams{get;set;}
