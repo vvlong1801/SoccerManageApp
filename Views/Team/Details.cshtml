@@ -3,8 +3,8 @@
     ViewData["Title"] = "Details";
 }
 <form method="get">
-<input type="text" name="searchStr" >
-<button type="submit">Search</button>
+    <input type="text" name="searchStr">
+    <button type="submit">Search</button>
 </form>
 
 <table border="2" cellpadding="30">
@@ -24,23 +24,34 @@
             <td>
                 @foreach (var item in Model)
                 {
-                        <ul>
+                    <ul>
                         <li><a asp-controller="Player" asp-action="Details" asp-route-id="">
                                 <h4>@item.FirstName @item.LastName</h4>
                             </a>(<span>Position:@item.Position</span>)
-                            
-                           <div style="margin-top: 20px;">
-                            <a asp-controller="Player" asp-action="Edit" asp-route-playerId="" >Edit</a>
-                            <a asp-controller="Player" asp-action="Delete" asp-route-playerId="" >Delete</a>
-                            <a asp-controller="Player" asp-action="Details" asp-route-playerId="" >Details</a>
-                           </div>
-                            </li>
-                            <hr/>
+
+                            <div style="margin-top: 20px;">
+                                <a class="btn btn-primary" asp-controller="Player" asp-action="EditPlayer"
+                                    asp-route-playerId="@item.PlayerID">Edit</a>
+                                <div id="confirmDelete_@item.PlayerID" style="display: none;">
+                                        Are you sure?
+                                    <form method="POST" asp-action="DeletePlayer" asp-controller="Player"
+                                        asp-route-playerId="@item.PlayerID">
+
+                                        <a href="#" onclick="confirm('@item.PlayerID',false)" class="btn btn-primary">No</a>
+                                        <button type="submit" class="btn btn-primary">Yes</button>
+                                    </form>
+                                </div>
+                                <span id="delete_@item.PlayerID">
+                                    <a class="btn btn-danger" onclick="confirm('@item.PlayerID',true)">Delete</a>
+                                </span>
+
+                            </div>
+                        </li>
+                        <hr />
                     </ul>
-                    
-                    
                 }
-                <a asp-action="CreatePlayer" asp-controller="Player" asp-route-teamName="@ViewBag.teamName"> Add Player</a>
+                <a asp-action="CreatePlayer" asp-controller="Player" asp-route-teamName="@ViewBag.teamName"> Add
+                    Player</a>
             </td>
         </tr>
 
@@ -48,3 +59,6 @@
     </tbody>
 </table>
 <a asp-action="Index" asp-controller="Team">Back To Teams</a>
+@section Scripts{
+    <script src="~/js/custom.js"></script>
+}

@@ -1,12 +1,12 @@
-function AskForSure(userId,display)
+function confirm(value,display)
 {
     if(display)
     {
-        $('#confirmDeleteSpan_'+userId).show();
-        $('#deleteSpan_'+userId).hide();
+        $('#confirmDelete_'+value).show();
+        $('#delete_'+value).hide();
     }
     else {
-        $('#confirmDeleteSpan_'+userId).hide();
-        $('#deleteSpan_'+userId).show();
+        $('#confirmDelete_'+value).hide();
+        $('#delete_'+value).show();
     }
 }

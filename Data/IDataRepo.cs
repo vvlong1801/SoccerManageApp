@@ -15,12 +15,14 @@ namespace SoccerManage.Data
         Task<IEnumerable<TeamDtos>> GetAllTeamsAsync();
         Task<Team> UpdateTeamAsync(Team team,string teamName);
          Task<IEnumerable<TeamDetails>> GetTeamDetailsByNameAsync(string teamName);
+         Task DeleteTeamAsync(string teamName);
         
       
                 //Player Data
         Player GetPlayerById(int? id);
         Task <int> CreatePlayerAsync(Player player,string teamName);
-        void UpdatePlayer(Player player);
+        Task UpdatePlayerAsync(Player player,int playerId);
+        Task DeletePlayerAsync(int playerId);
         //Stadium data
         Stadium GetStadiumByName(string name);
         bool SaveChanges();

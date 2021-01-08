@@ -14507,11 +14507,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/quanbka/SoccerManageApp/Views/Player/Edit.cshtml",
-      "TargetPath": "Views\\Player\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/home/quanbka/SoccerManageApp/Views/Score/Details.cshtml",
       "TargetPath": "Views\\Score\\Details.cshtml",
       "FileKind": "mvc"
@@ -14544,6 +14539,11 @@
     {
       "FilePath": "/home/quanbka/SoccerManageApp/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Player/EditPlayer.cshtml",
+      "TargetPath": "Views\\Player\\EditPlayer.cshtml",
       "FileKind": "mvc"
     },
     {

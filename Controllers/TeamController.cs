@@ -62,5 +62,11 @@ namespace SoccerManageApp.Controllers
             ViewData["TeamImage"]=team.TeamImage;
             return View(team_details);
         }
+        [HttpPost]
+        public async Task<IActionResult> DeleteTeam(string teamName)
+        {
+            await _repo.DeleteTeamAsync(teamName);
+            return RedirectToAction("ListTeams");
+        }
     }
 }
