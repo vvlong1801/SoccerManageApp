@@ -4,14 +4,11 @@
 @{
     ViewData["Title"]="Index";
 }    
-@{
-    var position=1;
-}
+
 @if(Model.Count()>0)
 {
     <table border="2" cellpadding="15">
         <thead>
-            <th><h3>Position</h3></th>
             <th><h3>Team Name</h3></th>
             <th><h3>Team Stadium</h3></th>
         </thead>
@@ -19,18 +16,18 @@
             @foreach (var item in Model)    
         {
             <tr>
-                <td>@position</td>
+               
                 <td><a asp-action="Details" asp-route-teamName="@item.TeamName">@item.TeamName</a>
                 <img src="~/Image/@item.TeamImage" >
                 <hr/>
                 <span style="size: ;">
-                    <a asp-action="EditTeam" asp-route-teamId="@item.TeamID" style="margin-right: 5px;" class="text-primary">Edit</a>
-                    <a asp-action="DeleteTeam" asp-route-teamId="@item.TeamID" class="text-danger">Delete</a>  
+                    <a asp-action="EditTeam" asp-route-teamName="@item.TeamName" style="margin-right: 5px;" class="text-primary">Edit</a>
+                    <a asp-action="DeleteTeam" asp-route-teamName="@item.TeamName" class="text-danger">Delete</a>  
                 </span>
                 </td>
                 <td><a asp-action="Details" asp-controller="Stadium" asp-route-stadiumName="@item.StadiumName">@item.StadiumName</a></td>
             </tr>
-           position+=1;
+       
             
         }
         </tbody>

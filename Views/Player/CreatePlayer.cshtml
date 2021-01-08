@@ -2,8 +2,13 @@
 @{
     ViewData["Title"]="Create Player";
 }
-<h3> Add player for <span class="text-danger">@ViewBag.Team.TeamName </span>club</h3>
-<form asp-action="Create" asp-controller="Team" asp-route-teamId="@ViewBag.Team.TeamID" method="POST">
+<h3> Add player for <span class="text-danger">@ViewBag.teamName </span>club</h3>
+<form asp-action="CreatePlayer" asp-controller="Player" asp-route-teamName="@ViewBag.teamName" method="POST">
+    <div class="form-group">
+        <label asp-for="@Model.PlayerID">PlayerID</label>
+        <input asp-for="@Model.PlayerID" type="number">
+        <span asp-validation-for="@Model.FirstName"></span>
+    </div>
     <div class="form-group">
         <label asp-for="@Model.FirstName">Firstname</label>
         <input asp-for="@Model.FirstName" type="text">
@@ -16,7 +21,7 @@
     </div>
      <div class="form-group">
         <label asp-for="@Model.Kit">Kit Number</label>
-        <input asp-for="@Model.Kit" type="text">
+        <input asp-for="@Model.Kit" type="number">
         <span asp-validation-for="@Model.Kit"></span>
     </div>
     <div class="form-group">
@@ -30,8 +35,8 @@
         <span asp-validation-for="@Model.Country"></span>
     </div>
     <div class="form-group">
-        <label asp-for="@Model.TeamName">Team ID</label>
-        <input asp-for="@Model.TeamName" type="text">
+        <label asp-for="@Model.TeamName">Team Name</label>
+        <input asp-for="@Model.TeamName" value="@ViewBag.teamName" readonly type="text">
         <span asp-validation-for="@Model.TeamName"></span>
     </div>
 
@@ -43,7 +48,8 @@
 
     <div class="form-group">
         
-        <input type="submit" value="Add Player">
+        <button class="btn btn-primary" type="submit">Create</button>
+        <a href="/Team/ListTeams" class="btn btn-primary">Back</a>
         
     </div>
 </form>

@@ -18,22 +18,21 @@
         <tr>
 
             <td>
-                <h2>@ViewData["Teamname"]</h2>
+                <h2>@ViewBag.teamName</h2>
                 <img src="~/Image/@ViewData["TeamImage"]">
             </td>
             <td>
                 @foreach (var item in Model)
                 {
-                   
                         <ul>
                         <li><a asp-controller="Player" asp-action="Details" asp-route-id="">
                                 <h4>@item.FirstName @item.LastName</h4>
                             </a>(<span>Position:@item.Position</span>)
                             
                            <div style="margin-top: 20px;">
-                            <a asp-controller="Player" asp-action="Edit" asp-route-id="" >Edit</a>
-                            <a asp-controller="Player" asp-action="Delete" asp-route-id="" >Delete</a>
-                            <a asp-controller="Player" asp-action="Details" asp-route-id="" >Details</a>
+                            <a asp-controller="Player" asp-action="Edit" asp-route-playerId="" >Edit</a>
+                            <a asp-controller="Player" asp-action="Delete" asp-route-playerId="" >Delete</a>
+                            <a asp-controller="Player" asp-action="Details" asp-route-playerId="" >Details</a>
                            </div>
                             </li>
                             <hr/>
@@ -41,7 +40,7 @@
                     
                     
                 }
-                <a asp-action="Create" asp-controller="Team" asp-route-teamId=""> Add Player</a>
+                <a asp-action="CreatePlayer" asp-controller="Player" asp-route-teamName="@ViewBag.teamName"> Add Player</a>
             </td>
         </tr>
 

@@ -14427,6 +14427,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Player/CreatePlayer.cshtml",
+      "TargetPath": "Views\\Player\\CreatePlayer.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Stadium/CreateStadium.cshtml",
+      "TargetPath": "Views\\Stadium\\CreateStadium.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/quanbka/SoccerManageApp/Views/Admin/NotFound.cshtml",
       "TargetPath": "Views\\Admin\\NotFound.cshtml",
       "FileKind": "mvc"

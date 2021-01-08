@@ -9,24 +9,24 @@ namespace SoccerManage.Data
     public interface IDataRepo
     {
         //Team Data
-        Task<IEnumerable<TeamDetails>> GetTeamByNameAsync(string name);
+        Task<Team> GetTeamByNameAsync(string name);
         Task<IEnumerable<TeamDetails>> GetTeamByName_withSearchAsync(string name,string search);
         Task<int> CreateTeamAsync(Team team);
-        Task<Team> GetTeamAsync(int? id);
         Task<IEnumerable<TeamDtos>> GetAllTeamsAsync();
-        Task<Team> GetTeamByIdAsync(int Id);
-        Task<Team> UpdateTeamAsync(Team team,int teamId);
+        Task<Team> UpdateTeamAsync(Team team,string teamName);
+         Task<IEnumerable<TeamDetails>> GetTeamDetailsByNameAsync(string teamName);
         
       
                 //Player Data
         Player GetPlayerById(int? id);
-        Task <int> AddPlayer(Player player);
+        Task <int> CreatePlayerAsync(Player player,string teamName);
         void UpdatePlayer(Player player);
         //Stadium data
         Stadium GetStadiumByName(string name);
         bool SaveChanges();
         Task<bool> SaveChangesAsync();
         Task<Player> GetPlayerByIdAsync(int? id);
+        Task CreateStadiumAsync(Stadium model);
         void GetAllPlayers();
         //match data
         Task<IEnumerable<MatchInfoDtos>> GetAllMatchAsync();

@@ -1,12 +1,7 @@
 @model SoccerManageApp.Models.Entities.Team
 
 <h3>Register a team for league</h3>
-<form action="/Team/CreateTeam" method="POST">
-    <div class="form-group">
-        <label asp-for="@Model.TeamID"></label>
-        <input type="number" asp-for="@Model.TeamID"/>
-        <span asp-validation-for="@Model.TeamID" class="text-danger"></span>
-    </div>
+<form method="POST">
     <div class="form-group">
         <label asp-for="@Model.TeamName"></label>
         <input type="text" asp-for="@Model.TeamName"/>
@@ -19,7 +14,7 @@
     </div>
     <div class="form-group">
         <label asp-for="@Model.StadiumID"></label>
-        <input type="number" asp-for="@Model.StadiumID"/>
+        <input type="number" readonly asp-for="@Model.StadiumID" value="@ViewBag.stdId"/>
         <span asp-validation-for="@Model.StadiumID" class="text-danger"></span>
     </div>
     <div class="form-group">

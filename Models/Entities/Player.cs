@@ -15,7 +15,7 @@ namespace SoccerManageApp.Models.Entities
         public string Position{get;set;}
         public string Country{get;set;}
         public string CountryImage{get;set;}
-        public int TeamID{get;set;}
+        public string TeamName{get;set;}
         public virtual Team Team{get;set;}
         public string FullName{
             get{return FirstName+" "+LastName;}

@@ -83,7 +83,9 @@
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Score/Details.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Stadium/Details.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Team/Details.cshtml.g.cs
-/home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Team/CreatePlayer.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Team/CreateTeam.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Team/ListTeams.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Team/EditTeam.cshtml.g.cs
+/home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Stadium/CreateStadium.cshtml.g.cs
+/home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Player/CreatePlayer.cshtml.g.cs
+/home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Team/CreatePlayer.cshtml.g.cs

@@ -7,7 +7,7 @@ namespace SoccerManageApp.Models.Entities
         public virtual Match Match { get; set; }
         public int PlayerID { get; set; }
         public virtual Player Player { get; set; }
-        public int TeamID { get; set; }
+        public string TeamName { get; set; }
         public virtual Team Team { get; set; }
     }
 }
