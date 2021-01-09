@@ -8,6 +8,7 @@ using Npgsql;
 using SoccerManageApp.Dtos;
 using SoccerManageApp.Models;
 using SoccerManageApp.Models.Entities;
+using SoccerManageApp.Models.Entities.Models;
 
 namespace SoccerManage.Data {
     public class DataRepo : IDataRepo {
@@ -213,7 +214,7 @@ namespace SoccerManage.Data {
 
         public async Task<IEnumerable<MatchInfoDtos>> GetMatchByDatetimeAsync (DateTime date) {
             var connStr = DbConnection.connectionString;
-            var cmdStr = "Select * from match_info_dto4 where \"Datetime\"=@datetime;";
+            var cmdStr = "Select * from match_info_dto where datetime=@datetime;";
             var matches = new List<MatchInfoDtos> ();
             using (var conn = new NpgsqlConnection (connStr)) {
                 using (var cmd = new NpgsqlCommand (cmdStr, conn)) {
@@ -221,17 +222,18 @@ namespace SoccerManage.Data {
                     cmd.Parameters.AddWithValue ("@datetime", date);
                     using (NpgsqlDataReader rd = await cmd.ExecuteReaderAsync ()) {
                         while (rd.Read ()) {
-                        var match = new MatchInfoDtos () {
-                        MatchID = rd.GetInt32 (1),
-                        Datetime = rd.GetDateTime (2),
-                        Attendance = rd.GetInt32 (3),
-                        HomeName = rd.GetString (11),
-                        AwayName = rd.GetString (13),
-                        StadiumName = rd.GetString (8),
-                        HomeRes = rd.GetInt32 (6),
-                        AwayRes = rd.GetInt32 (7),
-                        HomeImage = rd.GetString (12),
-                        AwayImage = rd.GetString (14)
+                       var match = new MatchInfoDtos () {
+                        MatchID = Convert.ToInt32(rd["match_id"]),
+                        Datetime = rd.GetDateTime ("datetime"),
+                        Attendance = rd.GetInt32 ("attendance"),
+                        HomeName = rd.GetString ("hometeam_name"),
+                        AwayName = rd.GetString ("awayteam_name"),
+                        StadiumName = rd.GetString ("stadium_name"),
+                        HomeRes = rd.GetInt32 ("home_res"),
+                        AwayRes = rd.GetInt32 ("away_res"),
+                        HomeImage = rd.GetString ("home_image"),
+                        AwayImage = rd.GetString ("away_image")
+
 
                             };
                             matches.Add (match);
@@ -248,7 +250,7 @@ namespace SoccerManage.Data {
             NpgsqlConnection conn = null;
             var connStr = DbConnection.connectionString;
             using (conn = new NpgsqlConnection (connStr)) {
-                var cmdStr = "select * from match_info_dto4 where \"MatchID\"=@matchid;";
+                var cmdStr = "select * from match_info_dto where \"MatchID\"=@matchid;";
                 using (NpgsqlCommand cmd = new NpgsqlCommand (cmdStr, conn)) {
                     cmd.Parameters.AddWithValue ("@matchid", matchId);
                     await conn.OpenAsync ();
@@ -364,9 +366,6 @@ namespace SoccerManage.Data {
             throw new NotImplementedException ();
         }
 
-        Task<IEnumerable<MatchInfoDtos>> IDataRepo.GetMatchByDatetimeAsync (DateTime date) {
-            throw new NotImplementedException ();
-        }
         public async Task<Team> UpdateTeamAsync (Team model,string teamName) {
             NpgsqlConnection conn = null;
             var cmdStr = "update team set team_image = @teamimage, stadium_id = @stadium_id where team_name=@teamname;";

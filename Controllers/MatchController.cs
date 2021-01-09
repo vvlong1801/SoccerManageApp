@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SoccerManage.Data;
@@ -11,6 +12,11 @@ namespace SoccerManageApp.Controllers
         public MatchController(IDataRepo repo)
         {
             _repo=repo;
+        }
+        public async Task<IActionResult> Index(DateTime date)
+        {
+            var matches=await _repo.GetMatchByDatetimeAsync(date);
+            return View("ListMatches",matches);
         }
         public async Task<IActionResult> ListMatches()
         {

@@ -63,33 +63,11 @@ from team_result order by point desc;
 
 
 ----test
+INSERT into match Values
+(5,'01/08/2020',1000,9,'Chelsea','Everton')
 
------
----create view for match detail----
-create view match_info_dto as
-SELECT 
-    m1.stadium_id,
-    m1.match_id,
-    m1.datetime,
-    m1.attendance,
-    m1.hometeam_name,
-    m1.awayteam_name,
-    r.home_res,
-    r.away_res,
-    s.stadium_name,
-    s.city,
-    s.capacity,
-    ( SELECT t.team_image AS home_image
-           FROM team t,
-            match m
-          WHERE t.team_name = m.hometeam_name AND m.match_id= m1.match_id) AS home_image,
-  
-    ( SELECT t.team_image 
-           FROM team t,
-            match m
-          WHERE t.team_name = m.awayteam_name AND m.match_id = m1.match_id) AS away_image
-   FROM match m1
-     JOIN result r USING (match_id)
-     JOIN stadium s USING (stadium_id);
---------
+insert into result values(5,1,2);
+
+alter table team_result drop column point;
+
 

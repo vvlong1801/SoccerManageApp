@@ -5,16 +5,16 @@
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Username"></label>
-        <input type="text" asp-for="Username">
+        <input type="text" class="form-controll" asp-for="Username">
         <span asp-validation-for="Username" class="text-danger"></span>
     </div>
      <div class="form-group">
         <label asp-for="Password"></label>
-        <input type="text" asp-for="Password">
+        <input type="text" class="form-controll" asp-for="Password">
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <input type="checkbox" asp-for="RememberMe">
+        <input type="checkbox" class="form-controll" asp-for="RememberMe">
         <label asp-for="RememberMe"></label>
     </div>
     <div class="form-group">
