@@ -1,17 +1,25 @@
 @model SoccerManageApp.Models.Entities.Player
 @{
-    ViewData["Title"]="Create Player";
+    ViewData["Title"]="Edit Player";
 }
-<h3> Add player for <span class="text-danger">@ViewBag.Team.TeamName </span>club</h3>
-<form asp-action="Create" asp-controller="Team" asp-route-teamId="@ViewBag.Team.TeamID" method="POST">
+@if(@ViewBag.Success)
+{
+    <h2 class="text-success">Update successed</h2>
+    <a asp-action="Details" asp-controller="Team" asp-route-teamName="@Model.TeamName">Back To Teams</a>
+
+}
+else
+{
+<h3> Edit information for <span class="text-danger">@Model.FullName </span>player</h3>
+<form asp-action="EditPlayer" asp-controller="Player" asp-route-playerId="@Model.PlayerID" method="POST">
     <div class="form-group">
         <label asp-for="@Model.FirstName">Firstname</label>
-        <input asp-for="@Model.FirstName" type="text">
+        <input asp-for="@Model.FirstName" readonly type="text">
         <span asp-validation-for="@Model.FirstName"></span>
     </div>
     <div class="form-group">
         <label asp-for="@Model.LastName">Lastname</label>
-        <input asp-for="@Model.LastName" type="text">
+        <input asp-for="@Model.LastName" readonly type="text">
         <span asp-validation-for="@Model.LastName"></span>
     </div>
      <div class="form-group">
@@ -29,22 +37,16 @@
         <input asp-for="@Model.Country" type="text">
         <span asp-validation-for="@Model.Country"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="@Model.TeamName">Team ID</label>
-        <input asp-for="@Model.TeamName" type="text">
-        <span asp-validation-for="@Model.TeamName"></span>
-    </div>
-
-    <div class="form-group">
+     <div class="form-group">
         <label asp-for="@Model.CountryImage">Country Image</label>
-        <input asp-for="@Model.CountryImage" type="text">
+        <input asp-for="@Model.CountryImage"  type="text">
         <span asp-validation-for="@Model.CountryImage"></span>
     </div>
-
     <div class="form-group">
         
-        <input type="submit" value="Add Player">
+        <input type="submit" value="Update">
+        <a asp-action="Details" asp-controller="Team" asp-route-teamName="@Model.TeamName">Back</a>
         
     </div>
 </form>
-
+}

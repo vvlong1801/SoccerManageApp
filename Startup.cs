@@ -29,14 +29,16 @@ namespace SoccerManageApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(opt=>
+            services.AddMvc(
+                opt=>
             {
                 var policy=new AuthorizationPolicyBuilder()
                                 .RequireAuthenticatedUser()
                                 .Build();
                 opt.Filters.Add(new AuthorizeFilter(policy));                
                 
-            });
+            }
+            );
             services.AddEntityFrameworkNpgsql().AddDbContext<AppDbContext>(opt=>
             opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<IdentityUser,IdentityRole>()

@@ -4,14 +4,11 @@
 @{
     ViewData["Title"]="Index";
 }    
-@{
-    var position=1;
-}
+
 @if(Model.Count()>0)
 {
     <table border="2" cellpadding="15">
         <thead>
-            <th><h3>Position</h3></th>
             <th><h3>Team Name</h3></th>
             <th><h3>Team Stadium</h3></th>
         </thead>
@@ -19,18 +16,35 @@
             @foreach (var item in Model)    
         {
             <tr>
-                <td>@position</td>
+               
                 <td><a asp-action="Details" asp-route-teamName="@item.TeamName">@item.TeamName</a>
                 <img src="~/Image/@item.TeamImage" >
                 <hr/>
                 <span style="size: ;">
-                    <a asp-action="EditTeam" asp-route-teamId="@item.TeamID" style="margin-right: 5px;" class="text-primary">Edit</a>
-                    <a asp-action="DeleteTeam" asp-route-teamId="@item.TeamID" class="text-danger">Delete</a>  
-                </span>
+                    <a asp-action="EditTeam" asp-route-teamName="@item.TeamName" style="margin-right: 5px;" class="btn btn-primary">Edit</a>
+                    @if(_signInManager.IsSignedIn(User)&&User.IsInRole("Admin"))
+                    {
+                       <div id="confirmDelete_@item.TeamName" style="display: none;">
+                           <p>Are you sure?</p>
+                          
+                               
+                           <form asp-controller="Team" asp-action="DeleteTeam" asp-route-teamName="@item.TeamName" method="POST">
+                               <a href="#" onclick="confirm('@item.TeamName',false)" class="btn btn-primary">No</a>
+                               <button type="submit" class="btn btn-primary" >Yes</button>
+                           </form>
+                          
+                       </div> 
+                       <span id="delete_@item.TeamName">
+                            <a onclick="confirm('@item.TeamName',true)" class="btn btn-danger">Delete</a>  
+
+                       </span>
+
+                    }
+                    </span>
                 </td>
                 <td><a asp-action="Details" asp-controller="Stadium" asp-route-stadiumName="@item.StadiumName">@item.StadiumName</a></td>
             </tr>
-           position+=1;
+       
             
         }
         </tbody>
@@ -40,3 +54,6 @@ else
 {
     <h2 class="text-danger">No team available</h2>
 }
+@section Scripts{
+     <script src="~/js/custom.js"></script>
+ }

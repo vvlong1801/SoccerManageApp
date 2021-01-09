@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SoccerManageApp.Models;
@@ -9,9 +10,10 @@ using SoccerManageApp.Models;
 namespace SoccerManageApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210108061042_Initial_update5")]
+    partial class Initial_update5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -225,16 +227,22 @@ namespace SoccerManageApp.Migrations
                         .HasColumnName("attendance")
                         .HasColumnType("integer");
 
-                    b.Property<string>("AwayTeamName")
-                        .HasColumnName("awayteam_name")
+                    b.Property<int>("AwayResTeamID")
+                        .HasColumnName("awayresteam_id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("AwayResTeamName")
                         .HasColumnType("character varying(30)");
 
                     b.Property<DateTime>("Datetime")
                         .HasColumnName("datetime")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("HomeTeamName")
-                        .HasColumnName("hometeam_name")
+                    b.Property<int>("HomeResTeamID")
+                        .HasColumnName("homeresteam_id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("HomeResTeamName")
                         .HasColumnType("character varying(30)");
 
                     b.Property<int>("StadiumID")
@@ -243,9 +251,9 @@ namespace SoccerManageApp.Migrations
 
                     b.HasKey("MatchID");
 
-                    b.HasIndex("AwayTeamName");
+                    b.HasIndex("AwayResTeamName");
 
-                    b.HasIndex("HomeTeamName");
+                    b.HasIndex("HomeResTeamName");
 
                     b.HasIndex("StadiumID");
 
@@ -291,8 +299,11 @@ namespace SoccerManageApp.Migrations
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
+                    b.Property<int>("TeamID")
+                        .HasColumnName("team_id")
+                        .HasColumnType("integer");
+
                     b.Property<string>("TeamName")
-                        .HasColumnName("team_name")
                         .HasColumnType("character varying(30)");
 
                     b.HasKey("PlayerID");
@@ -337,12 +348,11 @@ namespace SoccerManageApp.Migrations
                         .HasColumnName("player_id")
                         .HasColumnType("integer");
 
-                    b.Property<string>("TeamName")
-                        .HasColumnName("team_name")
-                        .HasColumnType("character varying(30)")
-                        .HasMaxLength(30);
+                    b.Property<int>("TeamID")
+                        .HasColumnName("team_id")
+                        .HasColumnType("integer");
 
-                    b.Property<string>("TeamName1")
+                    b.Property<string>("TeamName")
                         .HasColumnType("character varying(30)");
 
                     b.HasKey("ScoreID");
@@ -351,7 +361,7 @@ namespace SoccerManageApp.Migrations
 
                     b.HasIndex("PlayerID");
 
-                    b.HasIndex("TeamName1");
+                    b.HasIndex("TeamName");
 
                     b.ToTable("score");
                 });
@@ -491,13 +501,13 @@ namespace SoccerManageApp.Migrations
 
             modelBuilder.Entity("SoccerManageApp.Models.Entities.Match", b =>
                 {
-                    b.HasOne("SoccerManageApp.Models.Entities.Team", "AwayTeam")
+                    b.HasOne("SoccerManageApp.Models.Entities.Team", "AwayRes")
                         .WithMany("AwayMatches")
-                        .HasForeignKey("AwayTeamName");
+                        .HasForeignKey("AwayResTeamName");
 
-                    b.HasOne("SoccerManageApp.Models.Entities.Team", "HomeTeam")
+                    b.HasOne("SoccerManageApp.Models.Entities.Team", "HomeRes")
                         .WithMany("HomeMatches")
-                        .HasForeignKey("HomeTeamName");
+                        .HasForeignKey("HomeResTeamName");
 
                     b.HasOne("SoccerManageApp.Models.Entities.Stadium", "Stadium")
                         .WithMany("Matches")
@@ -538,7 +548,7 @@ namespace SoccerManageApp.Migrations
 
                     b.HasOne("SoccerManageApp.Models.Entities.Team", "Team")
                         .WithMany("Scores")
-                        .HasForeignKey("TeamName1");
+                        .HasForeignKey("TeamName");
                 });
 
             modelBuilder.Entity("SoccerManageApp.Models.Entities.Team", b =>

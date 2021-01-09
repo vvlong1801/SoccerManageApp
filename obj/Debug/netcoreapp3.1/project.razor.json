@@ -14402,13 +14402,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/quanbka/SoccerManageApp/Views/Match/Index.cshtml",
-      "TargetPath": "Views\\Match\\Index.cshtml",
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Admin/CreateRole.cshtml",
+      "TargetPath": "Views\\Admin\\CreateRole.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/quanbka/SoccerManageApp/Views/Admin/CreateRole.cshtml",
-      "TargetPath": "Views\\Admin\\CreateRole.cshtml",
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Result/Ranking.cshtml",
+      "TargetPath": "Views\\Result\\Ranking.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14422,8 +14422,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Match/ListMatches.cshtml",
+      "TargetPath": "Views\\Match\\ListMatches.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Result/CreateResult.cshtml",
+      "TargetPath": "Views\\Result\\CreateResult.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/quanbka/SoccerManageApp/Views/Stadium/Details.cshtml",
       "TargetPath": "Views\\Stadium\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Player/CreatePlayer.cshtml",
+      "TargetPath": "Views\\Player\\CreatePlayer.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Stadium/CreateStadium.cshtml",
+      "TargetPath": "Views\\Stadium\\CreateStadium.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14444,11 +14464,6 @@
     {
       "FilePath": "/home/quanbka/SoccerManageApp/Views/Home/Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/quanbka/SoccerManageApp/Views/Result/Create.cshtml",
-      "TargetPath": "Views\\Result\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14477,11 +14492,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/quanbka/SoccerManageApp/Views/Match/Create.cshtml",
-      "TargetPath": "Views\\Match\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/home/quanbka/SoccerManageApp/Views/Team/CreatePlayer.cshtml",
       "TargetPath": "Views\\Team\\CreatePlayer.cshtml",
       "FileKind": "mvc"
@@ -14497,8 +14507,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/quanbka/SoccerManageApp/Views/Player/Edit.cshtml",
-      "TargetPath": "Views\\Player\\Edit.cshtml",
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Match/CreateMatch.cshtml",
+      "TargetPath": "Views\\Match\\CreateMatch.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14534,6 +14544,11 @@
     {
       "FilePath": "/home/quanbka/SoccerManageApp/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Player/EditPlayer.cshtml",
+      "TargetPath": "Views\\Player\\EditPlayer.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -1,17 +1,14 @@
 @model SoccerManageApp.Models.Entities.Player
 @{
-    ViewData["Title"]="Edit Player";
+    ViewData["Title"]="Create Player";
 }
-@if(@ViewBag.Success)
-{
-    <h2 class="text-success">Update successed</h2>
-    <a asp-action="Details" asp-controller="Team" asp-route-teamName="@Model.Team.TeamName">Back To Teams</a>
-
-}
-else
-{
-<h3> Edit information for <span class="text-danger">@Model.FullName </span>player</h3>
-<form asp-action="Edit" asp-controller="Player" asp-route-id="@Model.PlayerID" method="POST">
+<h3> Add player for <span class="text-danger">@ViewBag.teamName </span>club</h3>
+<form asp-action="CreatePlayer" asp-controller="Player" asp-route-teamName="@ViewBag.teamName" method="POST">
+    <div class="form-group">
+        <label asp-for="@Model.PlayerID">PlayerID</label>
+        <input asp-for="@Model.PlayerID" type="number">
+        <span asp-validation-for="@Model.FirstName"></span>
+    </div>
     <div class="form-group">
         <label asp-for="@Model.FirstName">Firstname</label>
         <input asp-for="@Model.FirstName" type="text">
@@ -24,7 +21,7 @@ else
     </div>
      <div class="form-group">
         <label asp-for="@Model.Kit">Kit Number</label>
-        <input asp-for="@Model.Kit" type="text">
+        <input asp-for="@Model.Kit" type="number">
         <span asp-validation-for="@Model.Kit"></span>
     </div>
     <div class="form-group">
@@ -37,15 +34,23 @@ else
         <input asp-for="@Model.Country" type="text">
         <span asp-validation-for="@Model.Country"></span>
     </div>
-     <div class="form-group">
+    <div class="form-group">
+        <label asp-for="@Model.TeamName">Team Name</label>
+        <input asp-for="@Model.TeamName" value="@ViewBag.teamName" readonly type="text">
+        <span asp-validation-for="@Model.TeamName"></span>
+    </div>
+
+    <div class="form-group">
         <label asp-for="@Model.CountryImage">Country Image</label>
         <input asp-for="@Model.CountryImage" type="text">
         <span asp-validation-for="@Model.CountryImage"></span>
     </div>
+
     <div class="form-group">
         
-        <input type="submit" value="Update">
+        <button class="btn btn-primary" type="submit">Create</button>
+        <a href="/Team/ListTeams" class="btn btn-primary">Back</a>
         
     </div>
 </form>
-}
+

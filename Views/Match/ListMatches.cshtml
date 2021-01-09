@@ -1,13 +1,15 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> _signInManage;
 @model IEnumerable<SoccerManageApp.Dtos.MatchInfoDtos>
 @{
     ViewData["Title"]="Details Match";
 }
 <form action="/Match/Index" method="GET">
-<input type="datetime" placeholder="Find by date" name="datetime"/>
+<input type="datetime" placeholder="Find by date" name="date"/>
 <button type="submit">Search</button>
 </form>
 <table border="1" cellpadding="15">
-    <thead>
+    <thead class="thead-dark">
         <th>Match ID</th>
         <th>Date Time</th>
         <th>Attendance</th>
@@ -22,7 +24,7 @@
         {
             <tr>
                 <td>@item.MatchID</td>
-                <td>@item.Datetime.ToString("MM/dd/yyyy")</td>
+                <td>@item.Datetime.ToString("dd/MM/yyyy")</td>
                 <td>@item.Attendance</td>
                 <td>@item.HomeName
                     <img src="~/Image/@item.HomeImage">
@@ -35,5 +37,8 @@
             </tr>
         }
     </tbody>
-    <a asp-action="Create" asp-controller="Match">Create a match</a>
+    @if(_signInManage.IsSignedIn(User)&&User.IsInRole("Admin"))
+    {
+        <a asp-action="CreateMatch" asp-controller="Match">Create a match</a>
+    }
 </table>

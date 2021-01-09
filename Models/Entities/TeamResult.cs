@@ -12,7 +12,7 @@ namespace SoccerManageApp.Models.Entities
             Point=0;
         }
         [Key]
-        public int TeamID{get;set;}
+        public string TeamName{get;set;}
         public int WinMatch { get; set; }
         public int DrawMatch { get; set; }
          public int LoseMatch { get;set;}

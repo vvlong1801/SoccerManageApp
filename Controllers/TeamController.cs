@@ -20,12 +20,14 @@ namespace SoccerManageApp.Controllers
             return View(teams);
         }
 
-        public IActionResult CreateTeam()
+        public IActionResult CreateTeam(int stadiumID)
         {
+            ViewBag.stdId=stadiumID;
+            ViewBag.teamId=stadiumID;
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateTeam(Team model)
+        public async Task<IActionResult> CreateTeam(Team model,int stadiumID)
         {
             if(!ModelState.IsValid)
             {
@@ -39,18 +41,32 @@ namespace SoccerManageApp.Controllers
            return View(model);
 
         }
-        public async Task<IActionResult> EditTeam(int teamId)
+        public async Task<IActionResult> EditTeam(string teamName)
         {
-            ViewBag.teamId=teamId;
-            var team=await _repo.GetTeamByIdAsync(teamId);
+            ViewBag.teamName=teamName;
+            var team=await _repo.GetTeamByNameAsync(teamName);
             return View(team);
         }
         [HttpPost]
-        public async Task<IActionResult> EditTeam(Team model,int teamId)
+        public async Task<IActionResult> EditTeam(Team model,string teamName)
         {
-            var team=await _repo.UpdateTeamAsync(model,teamId);
+            var team=await _repo.UpdateTeamAsync(model,teamName);
             return RedirectToAction("ListTeams");
  
+        }
+        public async Task<IActionResult> Details (string teamName)
+        {
+            var team_details=await _repo.GetTeamDetailsByNameAsync(teamName);
+            var team= await _repo.GetTeamByNameAsync(teamName);
+            ViewBag.teamName=team.TeamName;
+            ViewData["TeamImage"]=team.TeamImage;
+            return View(team_details);
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteTeam(string teamName)
+        {
+            await _repo.DeleteTeamAsync(teamName);
+            return RedirectToAction("ListTeams");
         }
     }
 }

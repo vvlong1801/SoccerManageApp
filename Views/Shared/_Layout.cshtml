@@ -54,21 +54,7 @@
                                 asp-action="Register">Register</a>
                         </li>
                        }
-                    </ul>
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
-                                asp-action="Index">News</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Team"
-                                asp-action="CreateTeam">Register Team</a>
-                        </li>
-                        
-                         @if(_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        @if(_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                          {
                              <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -82,6 +68,29 @@
                             </div>
                          }
                             
+                    </ul>
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Team"
+                                asp-action="ListTeams">Teams</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Match"
+                                asp-action="ListMatches">Matches</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Result"
+                                asp-action="Ranking">Ranking</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Stadium"
+                                asp-action="CreateStadium">Create Team</a>
+                        </li>
+                        
+                        
                          
                         
                     </ul>
