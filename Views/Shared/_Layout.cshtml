@@ -63,9 +63,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Team"
                                 asp-action="ListTeams">Teams</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Match"
+                                asp-action="ListMatches">Matches</a>
+                        </li>
                          <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Stadium"
-                                asp-action="CreateStadium">Register Team</a>
+                                asp-action="CreateStadium">Create Team</a>
                         </li>
                         
                          @if(_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))

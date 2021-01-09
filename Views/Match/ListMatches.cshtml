@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> _signInManage;
 @model IEnumerable<SoccerManageApp.Dtos.MatchInfoDtos>
 @{
     ViewData["Title"]="Details Match";
@@ -22,7 +24,7 @@
         {
             <tr>
                 <td>@item.MatchID</td>
-                <td>@item.Datetime.ToString("MM/dd/yyyy")</td>
+                <td>@item.Datetime.ToString("dd/MM/yyyy")</td>
                 <td>@item.Attendance</td>
                 <td>@item.HomeName
                     <img src="~/Image/@item.HomeImage">
@@ -35,5 +37,8 @@
             </tr>
         }
     </tbody>
-    <a asp-action="Create" asp-controller="Match">Create a match</a>
+    @if(_signInManage.IsSignedIn(User)&&User.IsInRole("Admin"))
+    {
+        <a asp-action="CreateMatch" asp-controller="Match">Create a match</a>
+    }
 </table>

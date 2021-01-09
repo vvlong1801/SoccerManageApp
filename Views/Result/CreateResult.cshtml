@@ -1,9 +1,9 @@
 @model SoccerManageApp.Models.Entities.Result
 
-<form asp-action="Create" asp-controller="Result" asp-route-matchId="@ViewBag.id" method="POST">
+<form asp-action="CreateResult" asp-controller="Result" asp-route-matchId="@ViewBag.matchId" method="POST">
         <div class="form-group">
         <label asp-for="@Model.MatchID">MatchID</label>
-        <input asp-for="@Model.MatchID" type="number">
+        <input asp-for="@Model.MatchID" readonly type="number">
         <span asp-validation-for="@Model.MatchID"></span>
     </div>
 
@@ -19,6 +19,7 @@
         <span asp-validation-for="@Model.Awayres"></span>
     </div>
     <div>
-        <input type="submit" value="Add">
+        <button class="btn btn-primary" type="submit">Create</button>
+
     </div>
 </form>

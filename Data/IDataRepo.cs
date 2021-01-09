@@ -19,7 +19,6 @@ namespace SoccerManage.Data
         
       
                 //Player Data
-        Player GetPlayerById(int? id);
         Task <int> CreatePlayerAsync(Player player,string teamName);
         Task UpdatePlayerAsync(Player player,int playerId);
         Task DeletePlayerAsync(int playerId);
@@ -32,13 +31,14 @@ namespace SoccerManage.Data
         void GetAllPlayers();
         //match data
         Task<IEnumerable<MatchInfoDtos>> GetAllMatchAsync();
-        Task<int> CreateMatch(Match match);
-        bool checkExist(int homeId,int awayId);
-        Task<MatchInfoDtos> GetMatchById(int matchId);
+        Task<int> CreateMatchAsync(Match match);
+        bool CheckExist(string homeTeam,string awayTeam);
+        Task<MatchInfoDtos> GetMatchByIdAsync(int matchId);
         Task<IEnumerable<MatchInfoDtos>> GetMatchByDatetimeAsync(DateTime date);
 
         //result data
-        Task<int> CreateResult(Result result);
+        Task<int> CreateResultAsync(Result result,int matchId);
+        Task<IEnumerable<RankingDto>> GetRankAsync();
         //score data
         Task<IEnumerable<Score>> GetScores(int matchId);
         Task<int> CreateScore(Score score);

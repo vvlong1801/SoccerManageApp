@@ -1,0 +1,43 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> _signInManage;
+@model IEnumerable<SoccerManageApp.Dtos.RankingDto>
+@{
+    ViewData["Title"]="Details Match";
+}
+@{
+    int position=1;
+}
+<h3>Ranking</h3>
+<table border="1" cellpadding="15">
+    <thead>
+        <th>Position</th>
+        <th>Team Name</th>
+        <th>Match Played</th>
+        <th>Win Match</th>
+        <th>Draw Match</th>
+        <th>Lost Match</th>
+        <th>Goal For</th>
+        <th>Goal Against</th>
+        <th>Point</th>
+        
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@position</td>
+                <td><a href="/Team/Details?teamName=@item.TeamName"><img src="~/Image/@item.TeamImage"> @item.TeamName</a></td>
+                <td>@item.MatchPlayed</td>
+                <td>@item.WinMatch</td>
+                <td>@item.DrawMatch</td>
+                <td>@item.LoseMatch</td>
+                <td>@item.GoalFor</td>
+                 <td>@item.GoalAgainst</td>
+                <td>@item.Point</td>
+            </tr>
+             position++;
+        }
+       
+    </tbody>
+</table>
+<a class="btn btn-primary" href="/Match/ListMatches" >Back</a>
